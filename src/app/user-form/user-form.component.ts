@@ -1,17 +1,22 @@
 import { Component } from '@angular/core';
 
-import { User } from '../user';
+import { User } from '../user/user';
+import { UserDataService } from '../user-data.service';
 
 @Component({
   selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  templateUrl: './user-form.component.html'
 })
 export class UserFormComponent {
-  user = new User('');
+  constructor(private userDataService: UserDataService) {}
+
+  user = new User('', '');
 
   onSubmit() {
-    console.log('onSubmit(), user.username: ', this.user.username);
+    this.userDataService.getUserData(this.user.username).subscribe((data: any[]) => {
+      console.log(data);
+      // this.user.avatarUrl = data;
+    })
   }
 
   // remove later
