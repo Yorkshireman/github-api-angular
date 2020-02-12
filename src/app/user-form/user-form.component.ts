@@ -9,12 +9,13 @@ import { User } from '../user';
 })
 export class UserFormComponent {
   user = new User('');
-  submitted = false;
 
   onSubmit() {
-    console.log('onSubmit()');
-    this.submitted  = true;
+    console.log('onSubmit(), user.username: ', this.user.username);
   }
 
-  // get diagnostic() { return JSON.stringify(this.user); } // remove later
+  // remove later
+  get diagnostic() {
+    return JSON.stringify(this.user);
+  }
 }

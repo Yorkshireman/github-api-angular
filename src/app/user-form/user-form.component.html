@@ -1,15 +1,16 @@
-<form #userForm='ngForm'>
+{{ diagnostic }}
+<form (ngSubmit)='onSubmit()' #userForm='ngForm'>
   <div class='form-group'>
     <input
-      type='text'
       class='form-control'
       id='username'
       placeholder='Github username'
-      required
+      #name='ngModel'
       [(ngModel)]='user.username'
       name='username'
+      type='text'
+      required
     >
-    {{ user.username }}
   </div>
-  <button type='submit' class='btn btn-primary'>Search</button>
+  <button type='submit' class='btn btn-primary' [disabled]='!userForm.form.valid'>Search</button>
 </form>
