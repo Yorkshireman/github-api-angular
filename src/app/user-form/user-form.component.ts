@@ -1,26 +1,31 @@
 import { Component } from '@angular/core';
 
-import { User } from '../models/user';
 import { GithubApiService, UserData } from '../github-api.service';
+import { User } from '../models/user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-form',
   templateUrl: './user-form.component.html'
 })
 export class UserFormComponent {
-  constructor(private userDataService: GithubApiService) {}
-  user = new User('', '');
+  user = new User();
+
+  constructor(
+    private githubApiService: GithubApiService,
+    private userService: UserService
+  ) {}
 
   onSubmit() {
-    this.userDataService.getUserData(this.user.username)
+    this.githubApiService.getUserData(this.user.login)
       .subscribe((data: UserData) => {
-        this.user.avatarUrl = data.avatar_url;
+        this.user = {
+          ...data,
+          login: this.user.login
+        };
+
+        this.userService.changeUser(this.user);
       }
     )
-  }
-
-  // remove later
-  get diagnostic() {
-    return JSON.stringify(this.user);
   }
 }

@@ -1,0 +1,12 @@
+<div *ngIf='user.avatar_url'>
+  <div class='row'>
+    <div class='col-4'>
+      <img src='{{ user.avatar_url }}' />
+    </div>
+    <div class='col-8'>
+      <h3>{{ user.login }}</h3>
+      <p>{{ user.name }}</p>
+      <p>{{ user.company }}</p>
+    </div>
+  </div>
+</div>

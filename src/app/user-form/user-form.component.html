@@ -1,12 +1,11 @@
-{{ diagnostic }}
-<form (ngSubmit)='onSubmit()' #userForm='ngForm'>
+<form (ngSubmit)='onSubmit()' #userForm='ngForm' class='mb-3'>
   <div class='form-group'>
     <input
       class='form-control'
       placeholder='Github username'
       #name='ngModel'
-      [(ngModel)]='user.username'
-      name='username'
+      [(ngModel)]='user.login'
+      name='login'
       type='text'
       required
     >
